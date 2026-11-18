@@ -1,0 +1,4 @@
+consignment_id,enterprise,business_type,received
+C1,E1,import,2026-10-16T09:00:00+08:00
+C2,E2,sample,2026-10-16T10:00:00+08:00
+C3,E1,import,2026-10-17T09:00:00+08:00

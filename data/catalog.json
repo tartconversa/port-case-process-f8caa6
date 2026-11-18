@@ -1,0 +1,372 @@
+{
+  "title": "生命健康口岸的并行事项过程仓",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "consignments",
+      "description": "中心委托。",
+      "columns": [
+        {
+          "name": "consignment_id",
+          "type": "string",
+          "description": "委托",
+          "nullable": true
+        },
+        {
+          "name": "enterprise",
+          "type": "string",
+          "description": "企业",
+          "nullable": true
+        },
+        {
+          "name": "business_type",
+          "type": "string",
+          "description": "业务",
+          "nullable": true
+        },
+        {
+          "name": "received",
+          "type": "datetime",
+          "description": "受理",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "consignment_id"
+      ],
+      "references": [],
+      "path": "data/consignments.csv",
+      "row_count": 3,
+      "sha256": "12ab9533bb7225579eb6fb8b30b7eaceaf4e75408a61502ba19020af8f5f8fd3"
+    },
+    {
+      "name": "declarations",
+      "description": "申报关联。",
+      "columns": [
+        {
+          "name": "declaration_id",
+          "type": "string",
+          "description": "申报",
+          "nullable": true
+        },
+        {
+          "name": "consignment_id",
+          "type": "string",
+          "description": "委托",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "declaration_id"
+      ],
+      "references": [
+        {
+          "column": "consignment_id",
+          "target_table": "consignments",
+          "target_column": "consignment_id"
+        }
+      ],
+      "path": "data/declarations.csv",
+      "row_count": 4,
+      "sha256": "f8d912d845d1ecb66682b4f031ebc651d77ba60a48e4c368c64e4daf70ad4c32"
+    },
+    {
+      "name": "samples",
+      "description": "独立样品。",
+      "columns": [
+        {
+          "name": "sample_id",
+          "type": "string",
+          "description": "样品",
+          "nullable": true
+        },
+        {
+          "name": "declaration_id",
+          "type": "string",
+          "description": "申报",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "description": "管数",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "references": [
+        {
+          "column": "declaration_id",
+          "target_table": "declarations",
+          "target_column": "declaration_id"
+        }
+      ],
+      "path": "data/samples.csv",
+      "row_count": 4,
+      "sha256": "d592bd744d266f05e13a364b0538a2d56174244cd490c9c4757c984551447bb7"
+    },
+    {
+      "name": "cases",
+      "description": "事项所属。",
+      "columns": [
+        {
+          "name": "case_id",
+          "type": "string",
+          "description": "事项",
+          "nullable": true
+        },
+        {
+          "name": "declaration_id",
+          "type": "string",
+          "description": "申报",
+          "nullable": true
+        },
+        {
+          "name": "sample_id",
+          "type": "string",
+          "description": "样品或空",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "类型",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "case_id"
+      ],
+      "references": [
+        {
+          "column": "declaration_id",
+          "target_table": "declarations",
+          "target_column": "declaration_id"
+        },
+        {
+          "column": "sample_id",
+          "target_table": "samples",
+          "target_column": "sample_id"
+        }
+      ],
+      "path": "data/cases.csv",
+      "row_count": 6,
+      "sha256": "2a0ee1d7a31f05e6a30b941dcccb92ea8e33eba94474b1b90539be2bc8a8f137"
+    },
+    {
+      "name": "requirements",
+      "description": "必需分支。",
+      "columns": [
+        {
+          "name": "requirement_id",
+          "type": "string",
+          "description": "关联",
+          "nullable": true
+        },
+        {
+          "name": "consignment_id",
+          "type": "string",
+          "description": "委托",
+          "nullable": true
+        },
+        {
+          "name": "case_id",
+          "type": "string",
+          "description": "事项",
+          "nullable": true
+        },
+        {
+          "name": "required_from",
+          "type": "datetime",
+          "description": "开始",
+          "nullable": true
+        },
+        {
+          "name": "released_at",
+          "type": "datetime",
+          "description": "解除",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "requirement_id"
+      ],
+      "references": [
+        {
+          "column": "case_id",
+          "target_table": "cases",
+          "target_column": "case_id"
+        },
+        {
+          "column": "consignment_id",
+          "target_table": "consignments",
+          "target_column": "consignment_id"
+        }
+      ],
+      "path": "data/requirements.csv",
+      "row_count": 6,
+      "sha256": "ba664c6b61a0708ba8cb645b11674e9c5bb22e8e26c39f7bb3f62808b998becc"
+    },
+    {
+      "name": "events",
+      "description": "时间value按precision解释。",
+      "columns": [
+        {
+          "name": "event_id",
+          "type": "string",
+          "description": "回执",
+          "nullable": true
+        },
+        {
+          "name": "case_id",
+          "type": "string",
+          "description": "事项",
+          "nullable": true
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "description": "动作",
+          "nullable": true
+        },
+        {
+          "name": "agency",
+          "type": "string",
+          "description": "机构",
+          "nullable": true
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "description": "暂停归因",
+          "nullable": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "description": "时间",
+          "nullable": true
+        },
+        {
+          "name": "precision",
+          "type": "string",
+          "description": "minute或day",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "event_id"
+      ],
+      "references": [
+        {
+          "column": "case_id",
+          "target_table": "cases",
+          "target_column": "case_id"
+        }
+      ],
+      "path": "data/events.csv",
+      "row_count": 14,
+      "sha256": "b8e7800c4e0f1882e8d94b8ae012ac5403d3a9947dd89bfc904b29b21aeddcc7"
+    },
+    {
+      "name": "calendar",
+      "description": "实际工作开窗。",
+      "columns": [
+        {
+          "name": "window_id",
+          "type": "string",
+          "description": "开窗",
+          "nullable": true
+        },
+        {
+          "name": "agency",
+          "type": "string",
+          "description": "机构",
+          "nullable": true
+        },
+        {
+          "name": "start",
+          "type": "datetime",
+          "description": "起",
+          "nullable": true
+        },
+        {
+          "name": "end",
+          "type": "datetime",
+          "description": "止",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "window_id"
+      ],
+      "references": [],
+      "path": "data/calendar.csv",
+      "row_count": 8,
+      "sha256": "2a6a811e496108246b75456838f32e771db816979480e37d1c56c06815337a08"
+    },
+    {
+      "name": "later_receipts",
+      "description": "后续补到。",
+      "columns": [
+        {
+          "name": "event_id",
+          "type": "string",
+          "description": "回执",
+          "nullable": true
+        },
+        {
+          "name": "case_id",
+          "type": "string",
+          "description": "事项",
+          "nullable": true
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "description": "动作",
+          "nullable": true
+        },
+        {
+          "name": "agency",
+          "type": "string",
+          "description": "机构",
+          "nullable": true
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "description": "原因",
+          "nullable": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "description": "时点",
+          "nullable": true
+        },
+        {
+          "name": "precision",
+          "type": "string",
+          "description": "精度",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "event_id"
+      ],
+      "references": [
+        {
+          "column": "case_id",
+          "target_table": "cases",
+          "target_column": "case_id"
+        }
+      ],
+      "path": "data/later_receipts.csv",
+      "row_count": 2,
+      "sha256": "069c18a49774823dbf16209eb0e2d7bf867fc3408a74b0b81dd5a9d7a626a841"
+    }
+  ]
+}

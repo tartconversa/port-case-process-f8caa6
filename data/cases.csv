@@ -1,0 +1,7 @@
+case_id,declaration_id,sample_id,kind
+K1,D1,,document
+K2,D1,S1,lab
+K3,D1,S2,lab
+K4,D2,S3,lab
+K5,D3,S4,lab
+K6,D4,,document

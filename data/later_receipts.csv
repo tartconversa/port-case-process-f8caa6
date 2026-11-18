@@ -1,0 +1,3 @@
+event_id,case_id,action,agency,reason,value,precision
+E15,K5,accept,A,,2026-10-16T10:00:00+08:00,minute
+E16,K3,withdrawn,B,,2026-10-18T09:00:00+08:00,minute

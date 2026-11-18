@@ -1,0 +1,15 @@
+event_id,case_id,action,agency,reason,value,precision
+E1,K1,accept,A,,2026-10-16T09:00:00+08:00,minute
+E2,K1,finish,A,,2026-10-17T11:00:00+08:00,minute
+E3,K2,accept,A,,2026-10-16T10:00:00+08:00,minute
+E4,K2,pause,A,applicant,2026-10-16T15:00:00+08:00,minute
+E5,K2,resume,A,,2026-10-17T10:00:00+08:00,minute
+E6,K2,transfer,B,,2026-10-17T14:00:00+08:00,minute
+E7,K2,finish,A,,2026-10-17T16:00:00+08:00,minute
+E8,K2,finish,B,,2026-10-19T10:00:00+08:00,minute
+E9,K3,accept,B,,2026-10-16,day
+E10,K4,accept,B,,2026-10-17T09:00:00+08:00,minute
+E11,K4,finish,B,,2026-10-19,day
+E12,K5,finish,A,,2026-10-18T10:00:00+08:00,minute
+E13,K6,accept,A,,2026-10-17T10:00:00+08:00,minute
+E14,K6,rejected,A,,2026-10-19T10:00:00+08:00,minute
